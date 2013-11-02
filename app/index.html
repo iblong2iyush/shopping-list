@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" ng-app="shopping-list">
+<head>
+	<meta charset="UTF-8">
+	<title>Shopping List</title>
+	<script src="lib/angular/angular.js"></script>
+	<script src="app.js"></script>
+	<script src="controller/shoppingList.js"></script>
+</head>
+<body ng-controller="ShoppListController">
+	
+	<label for="name">Name:</label>
+	<input id="name" type="text" ng-model="newItem.name"/>
+
+	<label for="price">Price:</label>
+	<input id="price" type="text" ng-model="newItem.price"/>
+
+	<a ng-click="add()">Add</a>
+
+	<ol>
+		<li ng-repeat="item in list">
+			{{item.name}} : ${{item.price}}
+		</li>
+	</ol>
+
+	<a ng-click="save()">Save</a>
+</body>
+</html>	
