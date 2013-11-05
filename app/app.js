@@ -1,5 +1,21 @@
 'use strict';
 
 var shoppingListApp = angular.module('shopping-list', [
-	'Controllers', 'Directives'
-]);
+		'ngRoute','Controllers', 'Directives'
+	]);
+
+shoppingListApp.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/lists', {
+        templateUrl: 'view/shopping-list.html',
+        controller: 'ShoppingListController'
+      }).
+      when('/create', {
+        templateUrl: 'view/shopping-details.html',
+        controller: 'CreateListController'
+      }).
+      otherwise({
+        redirectTo: '/lists'
+      });
+  }]);

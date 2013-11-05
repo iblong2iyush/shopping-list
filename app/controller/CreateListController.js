@@ -1,6 +1,5 @@
 var controllers = angular.module('Controllers', []);
-
-controllers.controller('ShoppListController', function ShoppListControler ($scope){
+controllers.controller('CreateListController', function CreateListController ($scope){
 
 	$scope.shoppingList = {};
 
