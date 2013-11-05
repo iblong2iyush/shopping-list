@@ -1,25 +1,43 @@
 var controllers = angular.module('Controllers', []);
 
 controllers.controller('ShoppListController', function ShoppListControler ($scope){
-	var list = [];
 
-	list.push({name: 'Apple', price: '3'});
-	list.push({name: 'Orange', price: '3'});
+	$scope.shoppingList = {};
 
-	$scope.list = list;
-	$scope.newItem = {name:'', price:''};
+	$scope.shoppingList.date = new Date();
+	var month = $scope.shoppingList.date.getMonth();
+	var day = $scope.shoppingList.date.getDate();
+	$scope.shoppingList.name = 'Shopping List from ' + day + '/' + month;
+	$scope.shoppingList.items = [];
+	$scope.userInput = '';
 
 	$scope.add = function() {
 		var item ={};
-		item.name = $scope.newItem.name;
-		item.price = $scope.newItem.price;
+		item.name = getItemName();
+		item.price = getItemPrice();
 
-		$scope.list.push(item);
+		$scope.shoppingList.items.push(item);
 
-		$scope.newItem = {name:'', price:''};
+		$scope.userInput = '';
 	};
 
 	$scope.save = function() {
 		
+	};
+
+	$scope.delete = function(index) {
+		$scope.shoppingList.items.splice(index, 1);
+	};
+
+	$scope.ready = function(index) {
+		$scope.shoppingList.items[index].ready = true
+	};
+
+	getItemName = function() {
+		return $scope.userInput.split(',')[0]
+	}
+
+	getItemPrice = function() {
+		return $scope.userInput.split(',')[1]
 	}
 });

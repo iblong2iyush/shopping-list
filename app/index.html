@@ -3,26 +3,30 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Shopping List</title>
+	<link rel="stylesheet" type="text/css" href="css/shopping-list.css">
 	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-route.js"></script>
 	<script src="app.js"></script>
 	<script src="controller/shoppingList.js"></script>
+	<script src="directive/directives.js"></script>
 </head>
 <body ng-controller="ShoppListController">
-	
+	{{shoppingList.name}}
+	<br>
 	<label for="name">Name:</label>
-	<input id="name" type="text" ng-model="newItem.name"/>
-
-	<label for="price">Price:</label>
-	<input id="price" type="text" ng-model="newItem.price"/>
+	<input id="name" type="text" ng-model="userInput" ng-enter="add()"/>
 
 	<a ng-click="add()">Add</a>
 
-	<ol>
-		<li ng-repeat="item in list">
-			{{item.name}} : ${{item.price}}
-		</li>
-	</ol>
-
-	<a ng-click="save()">Save</a>
+	<table>
+		<tr ng-repeat="item in shoppingList.items">
+			<td ng-class="{done: item.ready}">{{item.name}}</td>
+			<td>
+				<input id="price" type="text" ng-model="item.price"/>
+			</td>
+			<td><a ng-click="delete($index)">Delete</a></td>
+			<td><a ng-click="ready($index)">Ready</a></td>
+		</tr>
+	</table>
 </body>
 </html>	
