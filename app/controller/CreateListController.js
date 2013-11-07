@@ -32,6 +32,10 @@ controllers.controller('CreateListController', function CreateListController ($s
 		$scope.shoppingList.items[index].ready = true
 	};
 
+	$scope.save = function() {
+		// Implement saving the list
+	};
+
 	getItemName = function() {
 		return $scope.userInput.split(',')[0]
 	}
