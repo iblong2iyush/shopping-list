@@ -1,0 +1,24 @@
+<div ng-controller="ShoppingListController">
+	<a href="#/create">Create</a>
+	<br>
+	<table>
+		<tr>
+			<td>Name</td>
+			<td>Date</td>
+			<td>Pending Items</td>
+			<td>Total Items</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr ng-repeat="shoppingList in lists">
+			<td>{{shoppingList.name}}</td>
+			<td>{{shoppingList.date}}</td>
+			<td>{{shoppingList.items.size}}</td>
+			<td>{{shoppingList.items.size}}</td>
+			<td><a href="#">Delete</a></td>
+			<td><a href="#">Edit</a></td>
+			<td><a href="#">Done</a></td>
+		</tr>
+	</table>
+</div>

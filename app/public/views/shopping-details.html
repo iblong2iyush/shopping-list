@@ -1,0 +1,20 @@
+<div ng-controller="CreateListController">
+	{{shoppingList.name}}
+	<br>
+	<label for="name">Name:</label>
+	<input id="name" type="text" ng-model="userInput" ng-enter="add()"/>
+
+	<a ng-click="add()">Add</a>
+
+	<table>
+		<tr ng-repeat="item in shoppingList.items">
+			<td ng-class="{done: item.ready}">{{item.name}}</td>
+			<td>
+				<input id="price" type="text" ng-model="item.price"/>
+			</td>
+			<td><a ng-click="delete($index)">Delete</a></td>
+			<td><a ng-click="ready($index)">Ready</a></td>
+		</tr>
+	</table>
+	<a ng-click="save()">Save</a>
+</div>
