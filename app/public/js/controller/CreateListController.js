@@ -1,5 +1,5 @@
 var controllers = angular.module('Controllers', []);
-controllers.controller('CreateListController', function CreateListController ($scope){
+controllers.controller('CreateListController', function CreateListController ($scope, $http){
 
 	$scope.shoppingList = {};
 
@@ -33,7 +33,17 @@ controllers.controller('CreateListController', function CreateListController ($s
 	};
 
 	$scope.save = function() {
-		// Implement saving the list
+		debugger
+		$http.post('/add', $scope.shoppingList).
+		success(
+			function(data, status, headers, config){
+				console.log(data)
+		}).
+		error(
+			function(data, status, headers, config) {
+				console.log('errr' + data)
+			}
+		);
 	};
 
 	getItemName = function() {

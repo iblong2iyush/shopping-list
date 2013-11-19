@@ -4,7 +4,6 @@ controllers.controller('ShoppingListController', function ShoppingListController
   	});
 
 	/*ShoppingList.query(function(data){
-		debugger
 		$scope.lists = data	
 	});*/
 	
