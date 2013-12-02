@@ -1,5 +1,6 @@
 controllers.controller('ShoppingListController', function ShoppingListController($scope, $http){
-	$http.get('domain/shoppingList.json').success(function(data) {
+debugger
+	$http.get('/list').success(function(data) {
     	$scope.lists = data;
   	});
 
