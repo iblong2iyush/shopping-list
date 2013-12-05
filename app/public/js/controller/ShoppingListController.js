@@ -1,11 +1,24 @@
 controllers.controller('ShoppingListController', function ShoppingListController($scope, $http){
-debugger
-	$http.get('/list').success(function(data) {
+
+	$http.get('/shoppingList').success(function(data) {
     	$scope.lists = data;
   	});
 
-	/*ShoppingList.query(function(data){
-		$scope.lists = data	
-	});*/
+	$scope.edit = function(id) {
+		var url = '/shoppingList/' + id;
+		
+		$http.get(url).success(function(data) {
+    		console.log(data)
+  		});		
+	};
+
+	$scope.delete = function() {
+		
+	};
+
+	$scope.done = function() {
+		
+	};
+
 	
 });

@@ -15,6 +15,10 @@ shoppingListApp.config(['$routeProvider',
         templateUrl: 'views/shopping-details.html',
         controller: 'CreateListController'
       }).
+      when('/create/:shoppingListId', {
+        templateUrl: 'views/shopping-details.html',
+        controller: 'CreateListController'
+      }).
       otherwise({
         redirectTo: '/lists'
       });

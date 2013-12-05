@@ -9,10 +9,15 @@ app.use(express.static(__dirname + '/public'));
 app.use('views',express.static(__dirname + '/public/views'));
 app.use(express.bodyParser());
 
-var shoppingLists = [];
+var shoppingLists = {};
+var id_counter = 0;
 
-app.get('/list', function(req, res){
+app.get('/shoppingList', function(req, res){
 	res.send(shoppingLists);
+});
+
+app.get('/shoppingList/:id', function(req, res){
+	res.send(shoppingLists[req.params.id]);
 });
 
 app.get('/', function(req, res){
@@ -22,7 +27,9 @@ app.get('/', function(req, res){
 });
 
 app.post('/add', function(req, res){
-	shoppingLists.push(req.body)
+	shoppingLists[id_counter] = req.body
+	shoppingLists[id_counter].id = id_counter
+	id_counter++
 	res.send('success')
 });
 

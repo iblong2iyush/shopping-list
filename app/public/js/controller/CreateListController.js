@@ -1,15 +1,20 @@
 var controllers = angular.module('Controllers', []);
-controllers.controller('CreateListController', function CreateListController ($scope, $http){
+controllers.controller('CreateListController', function CreateListController ($scope, $routeParams, $http){
 	
-	$scope.shoppingList = {};
-	$scope.shoppingList.date = new Date();
+	//FIXME: there's a call to init at the end of the controller, init is being triggered twitce. 
+	$scope.init = function() {
+		debugger
+		if ($routeParams.shoppingListId) {
+			var url = '/shoppingList/' + $routeParams.shoppingListId;
+		
+			$http.get(url).success(function(data) {
+	    		$scope.shoppingList = data;
+	  		});	
 
-	var month = $scope.shoppingList.date.getMonth();
-	var day = $scope.shoppingList.date.getDate();
-
-	$scope.shoppingList.name = 'Shopping List from ' + day + '/' + month;
-	$scope.shoppingList.items = [];
-	$scope.userInput = '';
+		} else {
+			$scope.resetData();
+		}
+	};
 
 	$scope.add = function() {
 		var item ={};
@@ -46,6 +51,10 @@ controllers.controller('CreateListController', function CreateListController ($s
 	$scope.resetData = function(){
 		$scope.shoppingList = {};
 		$scope.shoppingList.date = new Date();
+
+		var month = $scope.shoppingList.date.getMonth();
+		var day = $scope.shoppingList.date.getDate();
+
 		$scope.shoppingList.name = 'Shopping List from ' + day + '/' + month;
 		$scope.shoppingList.items = [];
 		$scope.userInput = '';
@@ -58,4 +67,6 @@ controllers.controller('CreateListController', function CreateListController ($s
 	getItemPrice = function() {
 		return $scope.userInput.split(',')[1]
 	}
+
+	$scope.init();
 });
