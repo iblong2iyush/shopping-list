@@ -23,6 +23,7 @@ app.get('/', function(req, res){
 
 app.post('/add', function(req, res){
 	shoppingLists.push(req.body)
+	res.send('success')
 });
 
 server.listen(3000, function() {

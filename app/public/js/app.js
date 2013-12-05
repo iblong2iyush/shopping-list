@@ -1,7 +1,7 @@
 'use strict';
 
 var shoppingListApp = angular.module('shopping-list', [
-		'ngRoute','Controllers', 'Directives','ShoppingListServices'
+		'ngRoute','Controllers', 'Directives','ShoppingListServices','ui.bootstrap'
 	]);
 
 shoppingListApp.config(['$routeProvider',

@@ -1,15 +1,14 @@
 <div ng-controller="ShoppingListController">
-	<a href="#/create">Create</a>
 	<br>
-	<table>
+	<table class="table table-striped table-bordered table-hover">
 		<tr>
-			<td>Name</td>
-			<td>Date</td>
-			<td>Pending Items</td>
-			<td>Total Items</td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<th>Name</th>
+			<th>Date</th>
+			<th>Pending Items</th>
+			<th>Total Items</th>
+			<th></th>
+			<th></th>
+			<th></th>
 		</tr>
 		<tr ng-repeat="shoppingList in lists">
 			<td>{{shoppingList.name}}</td>
@@ -21,4 +20,7 @@
 			<td><a href="#">Done</a></td>
 		</tr>
 	</table>
+
+	<button go-click="create" class="btn btn-info">Create</button>
+
 </div>

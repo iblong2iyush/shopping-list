@@ -1,11 +1,12 @@
 var controllers = angular.module('Controllers', []);
 controllers.controller('CreateListController', function CreateListController ($scope, $http){
-
+	
 	$scope.shoppingList = {};
-
 	$scope.shoppingList.date = new Date();
+
 	var month = $scope.shoppingList.date.getMonth();
 	var day = $scope.shoppingList.date.getDate();
+
 	$scope.shoppingList.name = 'Shopping List from ' + day + '/' + month;
 	$scope.shoppingList.items = [];
 	$scope.userInput = '';
@@ -20,10 +21,6 @@ controllers.controller('CreateListController', function CreateListController ($s
 		$scope.userInput = '';
 	};
 
-	$scope.save = function() {
-		
-	};
-
 	$scope.delete = function(index) {
 		$scope.shoppingList.items.splice(index, 1);
 	};
@@ -33,11 +30,11 @@ controllers.controller('CreateListController', function CreateListController ($s
 	};
 
 	$scope.save = function() {
-		debugger
 		$http.post('/add', $scope.shoppingList).
 		success(
 			function(data, status, headers, config){
-				console.log(data)
+				console.log(data);
+				$scope.resetData();
 		}).
 		error(
 			function(data, status, headers, config) {
@@ -45,6 +42,14 @@ controllers.controller('CreateListController', function CreateListController ($s
 			}
 		);
 	};
+
+	$scope.resetData = function(){
+		$scope.shoppingList = {};
+		$scope.shoppingList.date = new Date();
+		$scope.shoppingList.name = 'Shopping List from ' + day + '/' + month;
+		$scope.shoppingList.items = [];
+		$scope.userInput = '';
+	}
 
 	getItemName = function() {
 		return $scope.userInput.split(',')[0]
